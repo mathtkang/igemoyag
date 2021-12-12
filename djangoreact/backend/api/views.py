@@ -476,8 +476,10 @@ class SearchHistoryView(APIView, ListView):
 
     def get_queryset(self):
         user_email = str(self.request.user.email)
+
         if "#$%" in user_email:
             user_email = user_email.split("#$%")[1]
+
         queryset = super().get_queryset()
         queryset = queryset.filter(user_email=user_email).values_list(
             "pill_num", flat=True).order_by("id")[:9]
@@ -485,8 +487,10 @@ class SearchHistoryView(APIView, ListView):
 
     def get(self, request):
         user_email = str(request.user.email)
+
         if "#$%" in user_email:
             user_email = user_email.split("#$%")[1]
+
         data = SearchHistory.objects.filter(user_email=user_email).count()
         search_history_max_days = 7
         max_days_ago = timezone.now() - timedelta(days=search_history_max_days)
