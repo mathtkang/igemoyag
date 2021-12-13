@@ -578,24 +578,24 @@ def kakao_login(request):
     if User.objects.filter(email=email).exists():
         # 소셜 로그인 (토큰 발급)
         if SocialAccount.objects.filter(uid=uid).exists():
-            URL = f"{URL_BACK}api/token/"
             data = {
                 'email': email,
                 'password': password,
             }
-            token_req = requests.post(url=URL, data=data)
 
-            status_code = token_req.status_code
-            if status_code != 200:
+            try:
+                serializer = MyTokenObtainPairSerializer(data=data)
+                serializer.is_valid(raise_exception=True)
+            except:
                 email = str(uid) + "#$%" + email
                 data = {
                     'email': email,
                     'password': password,
                 }
-                token_req = requests.post(url=URL, data=data)
-                return Response(token_req.json())
-            else:
-                return Response(token_req.json())
+                serializer = MyTokenObtainPairSerializer(data=data)
+                serializer.is_valid(raise_exception=True)
+
+            return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
         # 해당 이메일로 자체 로그인한 경우 (email+uid로 새로운 email만들어서 회원가입)
         else:
@@ -617,13 +617,17 @@ def kakao_login(request):
             social_user.save()
 
             # 토큰 발급
-            URL = f"{URL_BACK}api/token/"
             data = {
                 'email': email,
                 'password': password,
             }
-            token_req = requests.post(url=URL, data=data)
-            return Response(token_req.json())
+            serializer = MyTokenObtainPairSerializer(data=data)
+            try:
+                serializer.is_valid(raise_exception=True)
+            except TokenError as e:
+                raise InvalidToken(e.args[0])
+
+            return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
     # db에 이메일이 존재하지 않는 경우 (소셜로그인으로 처음 로그인, db에 저장)
     else:
