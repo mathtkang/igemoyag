@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -42,7 +40,8 @@ const PillBoxContainer = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 60vw;
+    width: 100%;
+    padding: 0 15vw;
     margin-bottom: 1rem;
     h1,
     svg {
@@ -50,27 +49,29 @@ const PillBoxContainer = styled.div`
       margin-right: 0.625rem;
     }
     span {
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       font-weight: 600;
     }
   }
 
   @media screen and (max-width: 48em) {
     .pillbox_header {
-      width:80%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      padding-left: 5vw;
+      font-size: 1.5rem;
       h1,
       svg {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
         color: white;
         margin-right: 0.625rem;
       }
       span {
-        // display:inline-block;
-        // padding-right: 0;
-        font-size: 1.25rem;
+        font-size: 1.5rem;
         font-weight: 600;
       }
     }
   }
 `;
-

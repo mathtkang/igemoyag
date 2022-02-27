@@ -5,36 +5,36 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { login } from '../redux/authSlice';
 import Loader from '../components/Loader';
+import { REACT_APP_HOST_IP_ADDRESS } from '../env';
 
 const Social = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(async () => {
     const code = new URL(window.location.href).searchParams.get('code');
+<<<<<<< HEAD
     // const KAKAKO_LOGIN = `http://localhost:8000/api/login/kakao/?code=${code}`;
     const KAKAKO_LOGIN = 'http://localhost:8000/api/login/kakao/';
+=======
+>>>>>>> e2702e04
     const autoLogin = sessionStorage.getItem('autoLogin');
-    console.log(typeof code);
-
     try {
-      const { data } = await axios.post(KAKAKO_LOGIN, code);
       const { username, access, refresh } = data;
 
       if (access) {
         axios.defaults.headers.common.Authorization = `Bearer ${access}`;
         dispatch(login({ username, access }));
         alert('로그인 되었습니다');
+        if (autoLogin) {
+          localStorage.setItem('refresh', refresh);
+        } else {
+          sessionStorage.setItem('refresh', refresh);
+        }
         navigate('/');
       }
-      if (autoLogin) {
-        localStorage.setItem('refresh', refresh);
-      } else {
-        sessionStorage.setItem('refresh', refresh);
-      }
     } catch (error) {
-      console.log(error);
-      // alert('에러가 발생했습니다. 다시 로그인 해주세요');
-      // navigate('/login');
+      alert('에러가 발생했습니다. 다시 로그인 해주세요');
+      navigate('/login');
     }
   }, []);
 

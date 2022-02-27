@@ -10,6 +10,7 @@ export const SearchPage = styled.div`
   align-items: center;
   padding-bottom: 5vh;
   h1 {
+    font-size: 2rem;
     padding: 0 15vw;
     width: 100%;
     color: white;
@@ -107,6 +108,7 @@ export const ShapeColorBox = styled.div`
     color: ${mainPink};
     font-size: 1.25em;
     font-weight: 700;
+    min
   }
 `;
 

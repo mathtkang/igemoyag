@@ -251,6 +251,10 @@ def send_email(request):
 @permission_classes([IsAuthenticated])
 def search_history(request):
     user_email = str(request.user.email)
+
+    if "#$%" in user_email:
+        user_email = user_email.split("#$%")[1]
+
     data = SearchHistory.objects.filter(user_email=user_email).all().count()
 
     if data == 0:
@@ -542,8 +546,8 @@ class SearchHistoryView(APIView, ListView):
 
 
 '''OAuth : kakao social login'''
-URL_FRONT = "http://http://elice-kdt-2nd-team6.koreacentral.cloudapp.azure.com/"
-URL_BACK = "http://http://elice-kdt-2nd-team6.koreacentral.cloudapp.azure.com/"
+URL_FRONT = "http://elice-kdt-2nd-team6.koreacentral.cloudapp.azure.com/"
+URL_BACK = "http://elice-kdt-2nd-team6.koreacentral.cloudapp.azure.com/"
 
 
 @api_view(["POST"])
@@ -650,13 +654,17 @@ def kakao_login(request):
         social_user.save()
 
         # 로그인 시 토큰 발급
-        URL = f"{URL_BACK}api/token/"
         data = {
             'email': email,
             'password': password,
         }
-        token_req = requests.post(url=URL, data=data)
-        return Response(token_req.json())
+        serializer = MyTokenObtainPairSerializer(data=data)
+        try:
+            serializer.is_valid(raise_exception=True)
+        except TokenError as e:
+            raise InvalidToken(e.args[0])
+
+        return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
 
 # @api_view(["GET"])

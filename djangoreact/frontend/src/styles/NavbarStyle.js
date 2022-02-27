@@ -34,7 +34,7 @@ export const MenuBox = styled.nav`
   z-index: 3;
   top: 0;
   right: ${(props) => (props.active ? '0' : '-100%')};
-  box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: -3px 0px 4px 2px rgba(0, 0, 0, 0.4);
   transition: 500ms;
   @media screen and (max-width: 48rem) {
     width: 90%;
@@ -101,6 +101,12 @@ export const ContentBox = styled.div`
       transform: scale(1.02);
     }
     a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+    .pillBox {
       display: flex;
       justify-content: center;
       align-items: center;

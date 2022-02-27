@@ -55,7 +55,7 @@ const AboutServiceContainer = styled.div`
     padding: 0.313em 2em;
     color: white;
     background-color: ${mainPink};
-    box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.4);
     cursor: pointer;
   }
   @media only screen and (max-width: 48rem) {

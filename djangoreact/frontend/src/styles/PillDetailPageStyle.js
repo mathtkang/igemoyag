@@ -89,7 +89,7 @@ export const UserPill = styled.div`
   font-size: 1rem;
   margin-top: 1rem;
   margin-right: 1.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 1rem;
   border: 2px solid #dee2e6;
   border-radius: 1rem;
   background-color: ${(props) => (!props.isUserPill ? 'white' : '#b2acfa')};
@@ -122,6 +122,8 @@ export const PillInfo = styled.div`
   flex-direction: row;
   width: 99%;
   height: 10%;
+  justify-content: flex-start;
+  align-items: flex-start;
 
   & + div {
     margin-top: 1.5rem;
@@ -136,8 +138,9 @@ export const PillCategory = styled.p`
   font-size: 1.2rem;
   color: #8b00ff;
   font-weight: bold;
-  width: 15%;
+  width: 2rem;
   margin: 0.2rem 0 1rem 1.5rem;
+  flex-shrink: 2;
 
   @media screen and (max-width: 48em) {
     width: 13.5%;

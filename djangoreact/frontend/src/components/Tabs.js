@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import axios from 'axios';
 import Modal from 'react-modal';
 import html2canvas from 'html2canvas';
@@ -19,6 +20,7 @@ const Tabs = () => {
   const [shareImg, setShareImg] = useState();
   const [isOpen, setOpen] = useState(false);
   const pillBoxRef = useRef(null);
+  const location = useLocation();
   const navigate = useNavigate();
   const { access } = useSelector((state) => state.auth);
 
@@ -111,6 +113,12 @@ const Tabs = () => {
         return;
       }
 
+      if (location.state.index === 1) {
+        toggleTab(1);
+      } else if (location.state.index === 2) {
+        toggleTab(2);
+      };
+
       setRecentlyPill((current) => {
         const pillList = data;
         const newList = { ...current, pillList };
@@ -122,24 +130,23 @@ const Tabs = () => {
   }, []);
   return (
     <TabContainer>
-      <BlockTabs className="bloc-tabs">
-        <button type="button" className={toggleState === 1 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(1)}>
+      <BlockTabs>
+        <button type="button" className={toggleState === 1 ? ' active-tabs' : 'tabs'} onClick={() => toggleTab(1)}>
           최근 검색한 알약
         </button>
-        <button type="button" className={toggleState === 2 ? 'tabs active-tabs' : 'tabs'} onClick={() => toggleTab(2)}>
+        <button type="button" className={toggleState === 2 ? ' active-tabs' : 'tabs'} onClick={() => toggleTab(2)}>
           즐겨찾기한 알약
         </button>
       </BlockTabs>
-
       <ContentTabs className="content-tabs">
         <div className={toggleState === 1 ? 'content  active-content' : 'content'}>
-          <h2>내가 검색한 알약</h2>
+          <h2>최근 검색한 알약</h2>
           <Horizon />
           {!recentlyPill ? <p>최근 검색한 알약이 없습니다</p> : <PillCardContainer pillList={recentlyPill.pillList} />}
         </div>
         {/* 컴포넌트 구분선 */}
         <div className={toggleState === 2 ? 'content  active-content' : 'content'}>
-          <div className="toggle_header" >
+          <div className="toggle_header">
             <h2>즐겨 찾기한 알약</h2>
             <SavePillButton onClick={shareImgHandler}>알약 상자 저장</SavePillButton>
           </div>

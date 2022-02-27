@@ -9,8 +9,8 @@ const AboutUsPage = () => {
     <>
       <WhiteNavbar />
       <PageContainer className="about_us_box">
-        <h1 className="about_us_box_header">팀 머슴러닝</h1>
-        <h2 id="about_subtitle">궁금한 팀원의 카드를 클릭해보세요!</h2>
+        <h1 className="about_us_box_header">머슴러닝</h1>
+        <h2 id="about_subtitle">팀원의 카드를 클릭해보세요!</h2>
         <BoxContainer className="about_us_box_main">
           {memberList.map((item) => (
             <AboutUs

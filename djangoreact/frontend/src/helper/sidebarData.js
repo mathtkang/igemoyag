@@ -13,13 +13,13 @@ export const SearchBoxData = [
 
 export const PillBoxData = [
   {
-    title: '내 알약 상자',
+    title: '최근검색 알약',
     path: '/pillbox',
     className: 'navMenuList_pillbox',
   },
   {
-    title: '알약 상자 저장',
-    path: '/',
+    title: '즐겨찾기 알약',
+    path: '/pillbox',
     className: 'navMenuList_pillbox',
   },
 ];

@@ -1,6 +1,7 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as faIcons from 'react-icons/fa';
 import * as grIcons from 'react-icons/gr';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,6 +11,7 @@ import { SearchBoxData, AuthBoxData, PillBoxData } from '../helper/sidebarData';
 import { NavBox, MenuBox, MenuBoxContent, ContentBox } from '../styles/NavbarStyle';
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => {
@@ -72,25 +74,47 @@ const Navbar = () => {
           </ContentBox>
           {logged && <h3>내 알약상자</h3>}
           <ContentBox className="nav_menu_list_Auth">
-            {logged
-              ? PillBoxData.map((item) => {
-                  return (
-                    <li key={item.title} className={item.className}>
-                      <Link to={item.path} onClick={showSidebar}>
-                        {item.title}
-                      </Link>
-                    </li>
-                  );
-                })
-              : AuthBoxData.map((item) => {
-                  return (
-                    <li key={item.title} className={item.className}>
-                      <Link to={item.path} onClick={showSidebar}>
-                        {item.title}
-                      </Link>
-                    </li>
-                  );
-                })}
+            {logged ? (
+              // ? PillBoxData.map((item) => {
+              //     return (
+              //       <li key={item.title} className={item.className}>
+              //         <Link to={item.path} onClick={showSidebar}>
+              //           {item.title}
+              //         </Link>
+              //       </li>
+              //     );
+              //   })
+              <>
+                <li onClick={showSidebar}>
+                  <a
+                    className="pillBox"
+                    type="button"
+                    onClick={() => navigate('/pillBox', { state: { index: 1 } })}
+                  >
+                    최근검색 알약
+                  </a>
+                </li>
+                <li onClick={showSidebar}>
+                  <a
+                    className="pillBox"
+                    type="button"
+                    onClick={() => navigate('/pillBox', { state: { index: 2 } })}
+                  >
+                    즐겨찾기 알약
+                  </a>
+                </li>
+              </>
+            ) : (
+              AuthBoxData.map((item) => {
+                return (
+                  <li key={item.title} className={item.className}>
+                    <Link to={item.path} onClick={showSidebar}>
+                      {item.title}
+                    </Link>
+                  </li>
+                );
+              })
+            )}
             {logged ? (
               <button type="button" onClick={Logout}>
                 로그아웃

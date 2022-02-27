@@ -63,7 +63,7 @@ export const Circle = styled.div`
 
   :hover {
     background-color: white;
-    box-shadow: 3px 2px 10px 3px gray;
+    /* box-shadow: 3px 2px 2px 2px rgba(0, 0, 0, 0.3); */
     img {
       display: none;
     }
@@ -84,7 +84,7 @@ export const Circle = styled.div`
   }
   @media screen and (max-width: 48rem) {
     background-color: white;
-    box-shadow: 3px 2px 10px 3px gray;
+    /* box-shadow: 3px 2px 10px 3px gray; */
     img {
       display: none;
     }

@@ -2,16 +2,18 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import { REACT_APP_HOST_IP_ADDRESS } from '../env';
 import { resetpassword } from '../redux/authSlice';
 
 const ResetPasswordPage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [requestSent, setRequestSent] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
   });
   const { email } = formData;
+  const [requestSent, setRequestSent] = useState(false);
 
   const resetPassword = async () => {
     const config = {
@@ -24,24 +26,22 @@ const ResetPasswordPage = () => {
 
     try {
       await axios.post(`${REACT_APP_HOST_IP_ADDRESS}auth/users/reset_password/`, body, config);
+      alert('이메일 전송이 완료되었습니다.');
 
       dispatch(resetpassword({ email }));
     } catch (error) {
-      alert('요청이 잘못 되었습니다.');
+      alert('유효하지 않은 이메일입니다.');
     }
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
-
     resetPassword(email);
-    setRequestSent(true);
   };
 
   const onChange = (event) => setFormData({ ...formData, [event.target.name]: event.target.value });
-
   if (requestSent) {
-    return <useNavigate to="/login" />;
+    navigate('/login');
   }
 
   return (

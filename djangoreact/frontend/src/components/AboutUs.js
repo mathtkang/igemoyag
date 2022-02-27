@@ -70,7 +70,7 @@ const Card = styled.div`
   .back {
     padding: 0.625rem 1.875rem;
     transform: rotateY(180deg);
-    background-color: #faf78e;
+    background-color: #ffd400;
     border-radius: 0.313rem;
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.4);
     display: flex;
@@ -99,8 +99,8 @@ const Card = styled.div`
       width: 90%;
       margin-top: 0.625rem;
       font-weight: 600;
-      font-size: 1.125rem;
-      font-family: 'Kyobo_handwriting';
+      font-size: 1rem;
+      font-family: 'Gmarket_Light';
       p {
         text-align: start;
         margin-top: 5px;

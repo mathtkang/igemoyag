@@ -40,6 +40,7 @@ const PillDetailPage = () => {
   const [pillAttention, setPillAttention] = useState();
   const [pillInteraction, setPillInteraction] = useState();
   const [pillDeposit, setPillDeposit] = useState();
+  const [pillItemNum, setPillItemNum] = useState();
 
   useEffect(async () => {
     setPillNum(location.state.pillNum); // 일련번호
@@ -97,9 +98,9 @@ const PillDetailPage = () => {
       <PillContainer>
         <PillView1>
           <PillName>{pillName}</PillName>
-          <ScanImgStyle src={pillImg} alt="알약사진" onClick={() => setOpen(true)} />
+          <ScanImgStyle src={`m_images/${location.state.pillNum}.jpg`} alt="알약사진" onClick={() => setOpen(true)} />
           <Modal isOpen={isOpen} style={modalStyles} onRequestClose={() => setOpen(false)}>
-            <img src={pillImg} alt="스캔된 사진" style={{ width: '100%', height: '100%' }} />
+            <img src={`m_images/${location.state.pillNum}.jpg`} alt="스캔된 사진" style={{ width: '100%', height: '100%' }} />
           </Modal>
         </PillView1>
         <PillView2>
@@ -110,15 +111,15 @@ const PillDetailPage = () => {
             {!isUserPill ? <p>즐겨찾기 등록</p> : <p>즐겨찾기 완료</p>}
           </UserPill>
           <PillInfo>
-            <PillCategory>성분/함량</PillCategory>
+            <PillCategory>성분함량</PillCategory>
             <PillDetailInfo className="pillStyle">{pillSungbun}</PillDetailInfo>
           </PillInfo>
           <PillInfo>
-            <PillCategory>효능/효과</PillCategory>
+            <PillCategory>효능효과</PillCategory>
             <PillDetailInfo>{pillEfcy}</PillDetailInfo>
           </PillInfo>
           <PillInfo>
-            <PillCategory>용법/용량</PillCategory>
+            <PillCategory>용법용량</PillCategory>
             <PillDetailInfo>{pillUse}</PillDetailInfo>
           </PillInfo>
           <PillInfo>

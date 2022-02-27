@@ -6,8 +6,12 @@ export const SuccessPage = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 15vh;
+  padding: 15vh 15vw 0;
   min-height: 95vh;
+  width: 100%;
+  @media screen and (max-width: 48em) {
+    padding: 15vh 0 10vh;
+  }
 `;
 
 export const modalStyles = {
@@ -27,12 +31,12 @@ export const ContainerWrap = styled.div`
   flex-direction: column;
   margin: 0 auto;
   background-color: white;
-  width: 60vw;
+  width: 100%;
   border-radius: 0.313rem;
   padding: 1rem;
 
   > h1 {
-    margin: 0 auto;
+    margin: 1rem auto;
   }
 
   @media screen and (max-width: 48em) {
