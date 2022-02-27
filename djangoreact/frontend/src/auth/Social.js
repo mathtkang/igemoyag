@@ -12,11 +12,8 @@ const Social = () => {
   const dispatch = useDispatch();
   useEffect(async () => {
     const code = new URL(window.location.href).searchParams.get('code');
-<<<<<<< HEAD
     // const KAKAKO_LOGIN = `http://localhost:8000/api/login/kakao/?code=${code}`;
     const KAKAKO_LOGIN = 'http://localhost:8000/api/login/kakao/';
-=======
->>>>>>> e2702e04
     const autoLogin = sessionStorage.getItem('autoLogin');
     try {
       const { username, access, refresh } = data;
