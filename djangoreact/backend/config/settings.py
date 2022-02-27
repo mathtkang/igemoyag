@@ -22,23 +22,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATE = "random_string"  # 나중에 url 요청 시 사용되는 값
 
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.environ.get("SECRET_KEY")
+
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # # Social client key
-# KAKAO_REST_API_KEY = os.environ.get("KAKAO_REST_API_KEY")
-# GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID")
-# GOOGLE_SECRET = os.environ.get("GOOGLE_SECRET")
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-788$x$hv@n*dzud$08r-_-i11kn!e-fv#1$*mlk+%*2-$3!wby"
-
-# Social client key
-KAKAO_REST_API_KEY = "a99d9ab952d8ff978691e6981a20b3f4"
-GOOGLE_CLIENT_ID = "775963563051-uv8t5d689e6eerchgedpdu2f36bthj45.apps.googleusercontent.com"
-GOOGLE_SECRET = "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"
+KAKAO_REST_API_KEY = os.environ.get("KAKAO_REST_API_KEY")
+GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID")
+GOOGLE_SECRET = os.environ.get("GOOGLE_SECRET")
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
@@ -267,10 +265,6 @@ SIMPLE_JWT = {
 
 # api 어플의 User 클래스 사용
 AUTH_USER_MODEL = "api.User"
-# Initialise environment variables
-env = environ.Env()
-environ.Env.read_env()
-
 
 """gmail을 통해 사용자의 비밀번호 재설정 메일 보내주기 설정"""
 # 메일을 호스트하는 서버

@@ -308,6 +308,7 @@ with open('./AI/pill_90.json', 'r') as f:
 df = pd.read_excel('./AI/ai_medicine.xlsx')
 model = tf.keras.models.load_model('model')
 
+
 def color_distance(r1, g1, b1, r2, g2, b2):
     red_mean = int(round((r1 + r2) / 2))
     r = int(r1 - r2)
@@ -582,7 +583,6 @@ def kakao_login(request):
     if User.objects.filter(email=email).exists():
         # 소셜 로그인 (토큰 발급)
         if SocialAccount.objects.filter(uid=uid).exists():
-
             data = {
                 'email': email,
                 'password': password,
