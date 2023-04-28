@@ -115,9 +115,7 @@
 
 ## 🌍 배포
 
-Docker, NginX, Gunicorn을 사용하여 AWS EC2 서버에 배포하였습니다.
-
-➡️ [서비스 주소]()
+Azure VM, Docker, NginX, Gunicorn을 사용하여 배포하였습니다.
 
 ❗️ 현재 비용의 문제로 서버 접속은 불가능합니다.
 
